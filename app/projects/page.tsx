@@ -23,6 +23,29 @@ const projects: Project[] = [
     githubUrl: "https://github.com/samuel361592/PersonalWebsite.git",
     demoUrl: "https://samuel-chen.com",
   },
+    {
+  title: "Social Platform (Auth & RBAC)",
+  description:
+    "A full-stack social platform built to practice authentication, authorization, and CRUD operations. Supports user registration, JWT-based login, role-based access control, and post ownership validation.",
+  tech: [
+    "Next.js",
+    "NestJS",
+    "TypeORM",
+    "JWT",
+    "RBAC",
+    "MySQL"
+  ],
+  repos: [
+    {
+      label: "Frontend",
+      url: "https://github.com/samuel361592/NextJS_frontend.git",
+    },
+    {
+      label: "Backend",
+      url: "https://github.com/samuel361592/NestJS_backend.git",
+    },
+  ],
+  },
   {
     title: "Todo CLI",
     description:
