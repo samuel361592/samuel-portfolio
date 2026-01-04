@@ -5,7 +5,13 @@ type Project = {
   description: string;
   tech: string[];
   githubUrl?: string;
+  repos?: ProjectRepo[];
   demoUrl?: string;
+};
+
+type ProjectRepo = {
+  label: string;
+  url: string;
 };
 
 const projects: Project[] = [
@@ -126,7 +132,29 @@ export default function ProjectsPage() {
               </div>
 
               <div className="flex items-center gap-4 text-xs">
-                {p.githubUrl ? (
+                {/* multi-repo projects */}
+                {p.repos?.map((repo) => (
+                  <a
+                    key={repo.url}
+                    href={repo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
+                      inline-flex items-center gap-1
+                      text-gray-500 hover:text-gray-900
+                      transition
+                    "
+                  >
+                    <GitHubIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-[1px]" />
+                    <span className="relative">
+                      {repo.label}
+                      <span className="absolute left-0 -bottom-0.5 h-px w-0 bg-gray-900 transition-all duration-300 group-hover:w-full" />
+                    </span>
+                  </a>
+                ))}
+
+                {/* fallback single repo */}
+                {!p.repos && p.githubUrl ? (
                   <a
                     href={p.githubUrl}
                     target="_blank"
@@ -145,6 +173,7 @@ export default function ProjectsPage() {
                   </a>
                 ) : null}
 
+                {/* demo */}
                 {p.demoUrl ? (
                   <a
                     href={p.demoUrl}
@@ -163,18 +192,6 @@ export default function ProjectsPage() {
                     </span>
                   </a>
                 ) : null}
-
-                {/* optional internal detail page placeholder */}
-                <Link
-                  href="/projects"
-                  className="
-                    ml-auto text-gray-400 hover:text-gray-900
-                    transition
-                  "
-                  aria-label="View all projects"
-                >
-                  {/* reserved for /projects/[slug] later */}
-                </Link>
               </div>
 
               {/* corner shimmer */}
